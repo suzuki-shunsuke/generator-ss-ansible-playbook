@@ -1,0 +1,5 @@
+# all
+# ap
+- src: suzuki-shunsuke.docker-ce-centos
+# jump
+- src: suzuki-shunsuke.zabbix-agent-centos

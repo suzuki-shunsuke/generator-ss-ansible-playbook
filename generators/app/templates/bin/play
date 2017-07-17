@@ -1,0 +1,8 @@
+#!/bin/bash
+# $ ENV={env} ansible-playbook -i bin/inventory playbooks/{role}.yml
+# $ play env role
+
+ENV=$1
+ROLE=$2
+
+ENV=$ENV ansible-playbook -i bin/inventory playbooks/$ROLE.yml

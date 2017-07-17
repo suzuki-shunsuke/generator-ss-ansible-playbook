@@ -1,0 +1,26 @@
+# Mac
+.DS_Store
+
+# Ansible
+*.retry
+playbooks/all.yml
+_roles/*
+!_roles/.keep
+
+# Python
+*.pyc
+.cache
+
+# direnv
+.direnv
+
+# Vagrant
+.vagrant
+
+# ssh
+sshcfg
+ssh-keys/*
+!ssh-keys/.keep
+
+# Node.js
+node_modules

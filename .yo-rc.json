@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Suzuki Shunsuke",
+      "authorEmail": "suzuki.shunsuke.1989@gmail.com",
+      "authorUrl": "https://github.com/suzuki-shunsuke"
+    }
+  }
+}

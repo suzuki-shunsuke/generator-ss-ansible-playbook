@@ -1,0 +1,21 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# 外部のyamlを読み込む
+require 'yaml'
+data = YAML.load_file(File.expand_path('../servers.yml', __FILE__))["vagrant"]
+
+Vagrant.configure(2) do |config|
+  data.each{|type, type_data|
+    type_data["vms"].each{|idx, vm_data|
+      config.vm.define "#{type}-#{idx}" do |app|
+        app.vm.box = "bento/centos-7.3"
+        app.vm.provider "virtualbox" do |vb|
+          vb.memory = type_data["params"]["mem"]
+        end 
+        app.vm.network :private_network, ip: vm_data["ip"]
+	app.vm.provision "shell", path: "bin/deploy-ssh-key-to-vagrant", args: [type]
+      end 
+    }
+  }
+end
