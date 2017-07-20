@@ -24,7 +24,14 @@ module.exports = class extends Generator {
       message: 'Would you like to install standard-version?'
     }]).then(answers => {
       ['services', 'envs'].forEach(key => {
-        answers[key] = answers[key].split(' ');
+        const items = [];
+        answers[key].split(' ').forEach(item => {
+          item = item.trim();
+          if (item.length) {
+            items.push(item);
+          }
+        });
+        answers[key] = items;
       });
       this.answers = answers;
     });

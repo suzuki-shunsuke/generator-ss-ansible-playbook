@@ -1,11 +1,9 @@
-<% envs.forEach(function(env) { %>
-  <%= env %>:
-  <% services.forEach(function(service) { %>
-    <%= service %>:
-      params:
-        user:
-      vms:
-        1:
-          ip:
-  <% }); %>
-<% }); %>
+<% envs.forEach(function(env) { -%>
+<%- env %>:<% services.forEach(function(service) { %>
+  <%- service %>:
+    params:
+      user:
+    vms:
+      1:
+        ip:<% }); %>
+<% }); -%>
