@@ -1,0 +1,3 @@
+# group_vars/<%= service %>.yml
+# {}
+service: <%= service %>

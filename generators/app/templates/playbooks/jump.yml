@@ -1,8 +1,0 @@
----
-- hosts: jump
-  vars_files:
-  - ../group_vars/all.yml
-  - ../group_vars/jump.yml
-  roles:
-  - role: suzuki-shunsuke.zabbix-agent-centos
-    zabbix_full_version: 3.2.4-2

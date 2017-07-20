@@ -1,32 +1,9 @@
-vagrant:
-  jump:
+<% envs.forEach(function(env) { -%>
+<%- env %>:<% services.forEach(function(service) { %>
+  <%- service %>:
     params:
-      mem: 512
-      user: vagrant
+      user:
     vms:
       1:
-        ip: 192.168.33.10
-  ap:
-    params:
-      mem: 1024
-      user: vagrant
-    vms:
-      1:
-        ip: 192.168.33.20
-      2:
-        ip: 192.168.33.21
-dev:
-  jump:
-    params:
-      user: suzuki_shunsuke
-    vms:
-      1:
-        ip: 192.168.43.10
-  ap:
-    params:
-      user: suzuki_shunsuke
-    vms:
-      1:
-        ip: 192.168.43.20
-      2:
-        ip: 192.168.43.21
+        ip:<% }); %>
+<% }); -%>
