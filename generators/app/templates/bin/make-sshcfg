@@ -4,6 +4,8 @@
 import os
 import sys
 
+import yaml
+
 sys.path.append(os.path.abspath(os.path.join(
     os.path.dirname(__file__), "..", "lib")))
 
@@ -11,7 +13,9 @@ from make_sshcfg import SSHCfg  # noqa: E402
 
 
 def main():
-    sshcfg = SSHCfg()
+    with open(os.path.join(os.path.dirname(__file__), "..", "cfg.yml")) as r:
+        cfg = yaml.load(r)
+    sshcfg = SSHCfg(cfg)
     data = sshcfg.load_yaml()
     sshcfg.write_sshcfg(data)
 

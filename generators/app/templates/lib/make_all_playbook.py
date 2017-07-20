@@ -9,16 +9,18 @@ import yaml
 
 class AllPlaybook(object):
 
-    def get_src_path(self):
-        return os.path.abspath(os.path.join(
-            os.path.dirname(__file__), "..", "servers.yml"))
+    def __init__(self, cfg):
+        self.cfg = cfg
+        self.servers_yml_path = os.path.realpath(
+            os.path.join(
+                os.path.dirname(__file__), "..", self.cfg["servers_yml_path"]))
 
     def get_dest_path(self):
         return os.path.abspath(os.path.join(
             os.path.dirname(__file__), "..", "playbooks", "all.yml"))
 
     def load_yaml(self):
-        with open(self.get_src_path()) as r:
+        with open(self.servers_yml_path) as r:
             return yaml.load(r)
 
     def conv_data(self, data):
