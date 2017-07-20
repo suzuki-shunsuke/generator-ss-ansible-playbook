@@ -15,6 +15,16 @@ module.exports = class extends Generator {
       message: 'env names(space separeted)',
       default: 'prod',
     }, {
+      type: 'input',
+      name: 'sshcfg_path',
+      message: 'the path of sshcfg',
+      default: 'sshcfg',
+    }, {
+      type: 'input',
+      name: 'servers_yaml_path',
+      message: 'the path of servers.yml',
+      default: 'servers.yml',
+    }, {
       type: 'confirm',
       name: 'install_validate_commit_msg',
       message: 'Would you like to install validate-commit-msg?'
@@ -53,10 +63,8 @@ module.exports = class extends Generator {
     [
       '.envrc',
       '.gitignore',
-      'Makefile',
       'README.md',
       'Vagrantfile',
-      'ansible.cfg',
       'bin',
       'group_vars/all.yml',
       'lib',
@@ -68,11 +76,14 @@ module.exports = class extends Generator {
           this.templatePath(key),
           this.destinationPath(key));
     });
-    ['servers.yml'].forEach(key => {
+    ['Makefile', 'ansible.cfg', 'cfg.yml'].forEach(key => {
         this.fs.copyTpl(
           this.templatePath(key),
           this.destinationPath(key), this.answers);
     });
+    this.fs.copyTpl(
+      this.templatePath('servers.yml'),
+      this.destinationPath(this.answers.servers_yaml_path), this.answers);
     this.answers.services.forEach(service => {
       this.fs.copyTpl(
         this.templatePath('playbooks/service.yml'),

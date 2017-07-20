@@ -4,6 +4,8 @@
 import os
 import sys
 
+import yaml
+
 sys.path.append(os.path.abspath(os.path.join(
     os.path.dirname(__file__), "..", "lib")))
 
@@ -11,7 +13,9 @@ from make_all_playbook import AllPlaybook  # noqa: E402
 
 
 def main():
-    all_playbook = AllPlaybook()
+    with open(os.path.join(os.path.dirname(__file__), "..", "cfg.yml")) as r:
+        cfg = yaml.load(r)
+    all_playbook = AllPlaybook(cfg)
     all_playbook.run()
 
 
