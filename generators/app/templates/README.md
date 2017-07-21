@@ -1,4 +1,6 @@
-# ansible-playbook-example
+# ansible playbook
+
+This playbook is based on https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook
 
 ## Requirements
 
