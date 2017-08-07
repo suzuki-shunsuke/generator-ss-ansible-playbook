@@ -4,12 +4,14 @@
 # This file should be included in .gitignore.
 {% for env, env_data in data.items() %}
   {% for role, role_data in env_data.items() %}
-    {% for idx, host_data in role_data.vms.items() %}
+    {% for idx, host_data in role_data.hosts.items() %}
+      {% if role_data.params.user %}
 Host {{role}}-{{idx}}.{{env}}
   HostName {{host_data.ip}}
-  User {{ role_data.params.user if role_data.params.user is not none else '' }}
+  User {{ role_data.params.user }}
   IdentityFile ssh-keys/{{role}}.{{env}}
   UserKnownHostsFile ssh-keys/known_hosts
+      {% endif %}
     {% endfor %}
   {% endfor %}
 {% endfor %}

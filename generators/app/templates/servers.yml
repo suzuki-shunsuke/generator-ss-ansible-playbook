@@ -3,7 +3,7 @@
   <%- service %>:
     params:
       user:
-    vms:
+    hosts:
       1:
         ip:<% }); %>
 <% }); -%>
