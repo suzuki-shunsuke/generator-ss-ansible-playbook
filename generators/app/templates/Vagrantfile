@@ -1,7 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# 外部のyamlを読み込む
 require 'yaml'
 data = YAML.load_file(File.expand_path('../servers.yml', __FILE__))["vagrant"]
 
