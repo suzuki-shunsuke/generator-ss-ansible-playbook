@@ -12,8 +12,8 @@ module.exports = class extends Generator {
     }, {
       type: 'input',
       name: 'envs',
-      message: 'env names(space separeted)',
-      default: 'prod',
+      message: 'env names(space separated, "vagrant" is added automatically)',
+      default: '',
     }, {
       type: 'input',
       name: 'sshcfg_path',
@@ -26,12 +26,15 @@ module.exports = class extends Generator {
       default: 'servers.yml',
     }, {
       type: 'confirm',
-      name: 'install_validate_commit_msg',
-      message: 'Would you like to install validate-commit-msg?'
-    }, {
-      type: 'confirm',
       name: 'install_standard_version',
       message: 'Would you like to install standard-version?'
+    }, {
+      type: 'confirm',
+      name: 'install_validate_commit_msg',
+      message: 'Would you like to install validate-commit-msg?',
+      when(answers) {
+        return !answers.install_standard_version;
+      },
     }]).then(answers => {
       ['services', 'envs'].forEach(key => {
         const items = [];
@@ -43,21 +46,19 @@ module.exports = class extends Generator {
         });
         answers[key] = items;
       });
+      answers.envs.push('vagrant');
       this.answers = answers;
     });
   }
 
   writing() {
     if (this.answers.install_standard_version) {
-      this.fs.extendJSON('package.json', {
-        scripts: {
-          'standard-version': 'standard-version',
-        }});
+      this.composeWith(require.resolve(
+        'generator-ss-standard-version/generators/app'));
     }
     if (this.answers.install_validate_commit_msg) {
-      this.fs.extendJSON('package.json', {
-        scripts: {
-          commitmsg: 'validate-commit-msg'}});
+      this.composeWith(require.resolve(
+        'generator-ss-validate-commit-msg/generators/app'));
     }
 
     [
@@ -95,12 +96,6 @@ module.exports = class extends Generator {
   }
 
   install() {
-    if (this.answers.install_standard_version) {
-      this.yarnInstall(['standard-version'], {dev: true});
-    }
-    if (this.answers.install_validate_commit_msg) {
-      this.yarnInstall(['husky', 'validate-commit-msg'], {dev: true});
-    }
     this.spawnCommand('direnv', ['allow']);
   }
 };
