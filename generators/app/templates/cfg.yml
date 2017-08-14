@@ -1,2 +1,2 @@
-sshcfg_path: <%- sshcfg_path %>
-servers_yml_path: <%- servers_yaml_path %>
+sshcfg_path: <%- sshcfgPath %>
+servers_yml_path: <%- serversYamlPath %>

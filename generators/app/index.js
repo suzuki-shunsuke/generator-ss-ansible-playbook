@@ -2,61 +2,57 @@
 
 const Generator = require('yeoman-generator');
 
+const Params = require('./params');
+const convName = require('./convName');
+
+const optionNames = [
+  'services',
+  'envs',
+  'sshcfg-path',
+  'servers-yaml-path',
+  'use-standard-version',
+  'use-validate-commit-msg',
+];
+
+const paramsHash = {};
+optionNames.forEach(name => {
+  paramsHash[name] = require(`./params/${convName(name)}`);
+});
+
+const params = new Params(
+  optionNames.map(key => require(`./params/${convName(key)}`)));
+
 module.exports = class extends Generator {
+  constructor(args, opts) {
+    super(args, opts);
+    params.setOptions(this);
+  }
   prompting() {
-    return this.prompt([{
-      type: 'input',
-      name: 'services',
-      message: 'service names(space separeted)',
-      default: 'app',
-    }, {
-      type: 'input',
-      name: 'envs',
-      message: 'env names(space separated, "vagrant" is added automatically)',
-      default: '',
-    }, {
-      type: 'input',
-      name: 'sshcfg_path',
-      message: 'the path of sshcfg',
-      default: 'sshcfg',
-    }, {
-      type: 'input',
-      name: 'servers_yaml_path',
-      message: 'the path of servers.yml',
-      default: 'servers.yml',
-    }, {
-      type: 'confirm',
-      name: 'install_standard_version',
-      message: 'Would you like to install standard-version?'
-    }, {
-      type: 'confirm',
-      name: 'install_validate_commit_msg',
-      message: 'Would you like to install validate-commit-msg?',
-      when(answers) {
-        return !answers.install_standard_version;
-      },
-    }]).then(answers => {
-      ['services', 'envs'].forEach(key => {
-        const items = [];
-        answers[key].split(' ').forEach(item => {
-          item = item.trim();
-          if (item.length) {
-            items.push(item);
-          }
-        });
-        answers[key] = items;
+    const questions = params.getQuestions(this);
+    const invQuestions = {};
+    questions.forEach(question => {
+      invQuestions[question.name] = question;
+    });
+    return this.prompt(questions).then(answers => {
+      const ret = {};
+      optionNames.forEach(name => {
+        if (this.options[name] !== undefined) {
+          const filter = invQuestions[name].filter;
+          ret[convName(name)] = filter ? filter(this.options[name]) : this.options[name];
+        } else {
+          ret[convName(name)] = answers[name];
+        }
       });
-      answers.envs.push('vagrant');
-      this.answers = answers;
+      this.answers = ret;
     });
   }
 
   writing() {
-    if (this.answers.install_standard_version) {
+    if (this.answers.useStandardVersion) {
       this.composeWith(require.resolve(
         'generator-ss-standard-version/generators/app'));
     }
-    if (this.answers.install_validate_commit_msg) {
+    if (this.answers.useValidateCommitMsg) {
       this.composeWith(require.resolve(
         'generator-ss-validate-commit-msg/generators/app'));
     }
@@ -78,13 +74,13 @@ module.exports = class extends Generator {
           this.destinationPath(key));
     });
     ['Makefile', 'ansible.cfg', 'cfg.yml'].forEach(key => {
-        this.fs.copyTpl(
-          this.templatePath(key),
-          this.destinationPath(key), this.answers);
+      this.fs.copyTpl(
+        this.templatePath(key),
+        this.destinationPath(key), this.answers);
     });
     this.fs.copyTpl(
       this.templatePath('servers.yml'),
-      this.destinationPath(this.answers.servers_yaml_path), this.answers);
+      this.destinationPath(this.answers.serversYamlPath), this.answers);
     this.answers.services.forEach(service => {
       this.fs.copyTpl(
         this.templatePath('playbooks/service.yml'),
