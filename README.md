@@ -1,6 +1,8 @@
 # generator-ss-ansible-playbook
 
-> yeoman generator for ansible playbook
+[yeoman generator](http://yeoman.io/) to make the ansible playbook.
+
+This repository is based on the boilerplate created by [generator-generator](https://github.com/yeoman/generator-generator).
 
 ## Requirements
 
@@ -10,15 +12,13 @@
 ## Install
 
 ```bash
-$ git clone https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook
-$ cd generator-ss-ansible-playbook
-$ npm link
+$ npm i -g generator-ss-ansible-playbook
 ```
 
 Then generate your new project:
 
 ```bash
-yo ss-ansible-playbook
+$ yo ss-ansible-playbook
 ```
 
 ## License
