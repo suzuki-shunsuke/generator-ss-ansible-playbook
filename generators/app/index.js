@@ -94,5 +94,6 @@ module.exports = class extends Generator {
 
   install() {
     this.spawnCommand('direnv', ['allow']);
+    this.spawnCommand('chmod', ['-R', 'a+x', 'bin']);
   }
 };
