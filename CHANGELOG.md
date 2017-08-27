@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v1.0.0...v1.0.1) (2017-08-27)
+
+
+### Bug Fixes
+
+* [#7](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/issues/7) rename .gitignore to gitignore ([af3365b](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/commit/af3365b))
+
+
+
 <a name="1.0.0"></a>
 # 1.0.0 (2017-08-21)
 
