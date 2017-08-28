@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v2.0.0...v2.0.1) (2017-08-28)
+
+
+### Bug Fixes
+
+* fix bin/inventory ([77b3cc8](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/commit/77b3cc8))
+* fix the path of servers.yml in Vagrantfile ([f149c3f](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/commit/f149c3f))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v1.0.3...v2.0.0) (2017-08-28)
 
