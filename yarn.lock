@@ -1294,21 +1294,6 @@ functional-red-black-tree@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
 
-generator-ss-standard-version@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/generator-ss-standard-version/-/generator-ss-standard-version-1.0.0.tgz#e830f9e3bb10a691e659ad19f8305d4550242a35"
-  dependencies:
-    chalk "^1.1.3"
-    generator-ss-validate-commit-msg "^1.0.0"
-    yeoman-generator "^1.0.0"
-    yosay "^2.0.0"
-
-generator-ss-validate-commit-msg@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/generator-ss-validate-commit-msg/-/generator-ss-validate-commit-msg-1.0.0.tgz#1ba92570f0ab414a85c9de7be781113885b16449"
-  dependencies:
-    yeoman-generator "^1.0.0"
-
 get-caller-file@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.2.tgz#f702e63127e7e231c160a80c1554acb70d5047e5"
