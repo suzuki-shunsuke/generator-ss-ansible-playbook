@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v1.0.3...v2.0.0) (2017-08-28)
+
+
+### Bug Fixes
+
+* abolish the installation of standard-version and validate-commit-msg and husky ([773b78e](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/commit/773b78e))
+
+
+### BREAKING CHANGES
+
+* abolish the installation of standard-version and validate-commit-msg and husky
+
+Remove --use-standard-version and --validate-commit-msg options.
+If you want to install standard-version and validate-commit-msg and
+husky in the same manner as before,
+use `generator-ss-standard-version` or `generator-ss-validate-commit-msg`.
+
+
+
 <a name="1.0.3"></a>
 ## [1.0.3](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v1.0.2...v1.0.3) (2017-08-28)
 
