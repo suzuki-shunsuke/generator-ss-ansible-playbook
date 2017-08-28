@@ -47,7 +47,6 @@ module.exports = class extends Generator {
 
   writing() {
     [
-      '.envrc',
       'README.md',
       'Vagrantfile',
       'bin',
@@ -63,6 +62,8 @@ module.exports = class extends Generator {
     });
     this.fs.copy(
       this.templatePath('gitignore'), this.destinationPath('.gitignore'));
+    this.fs.copy(
+      this.templatePath('envrc'), this.destinationPath('.envrc'));
     ['Makefile', 'ansible.cfg', 'cfg.yml'].forEach(key => {
       this.fs.copyTpl(
         this.templatePath(key),
