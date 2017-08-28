@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 require 'yaml'
-data = YAML.load_file(File.expand_path('../servers.yml', __FILE__))["vagrant"]
+data = YAML.load_file(File.expand_path('../<%- serversYamlPath %>', __FILE__))["vagrant"]
 
 Vagrant.configure(2) do |config|
   data.each{|type, type_data|
