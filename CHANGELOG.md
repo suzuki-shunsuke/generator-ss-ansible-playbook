@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.3"></a>
+## [1.0.3](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v1.0.2...v1.0.3) (2017-08-28)
+
+
+### Bug Fixes
+
+* fix the template of `servers.yml` ([46be945](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/commit/46be945))
+
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v1.0.1...v1.0.2) (2017-08-27)
 
