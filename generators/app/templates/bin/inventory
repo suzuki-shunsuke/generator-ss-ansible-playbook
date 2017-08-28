@@ -13,23 +13,24 @@ import sys
 import yaml
 
 
-CFG_FILENAME = "servers.yml"
-
-
 def get_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument("--list", action="store_true")
     return parser
 
-def get_cfg_path():
+
+def get_cfg_yaml_path():
     return os.path.realpath(
         os.path.join(
-            os.path.dirname(os.path.abspath(__file__)), "..", CFG_FILENAME))
+            os.path.dirname(os.path.abspath(__file__)),
+            "..", "cfg.yml"))
 
 
-def read_cfg():
-    with open(get_cfg_path()) as r:
-        return yaml.load(r)
+def get_servers_yaml_path(cfg):
+    return os.path.realpath(
+        os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "..", cfg["servers_yml_path"]))
 
 
 def conv_inventories(data, env):
@@ -37,15 +38,18 @@ def conv_inventories(data, env):
     for role, role_data in data[env].items():
         ret[role] = {
             "hosts": ["{}-{}.{}".format(role, idx, env)
-                      for idx in role_data["vms"]],
+                      for idx in role_data["hosts"]],
             "vars": role_data["params"],
         }
     return ret
 
 
 def get_inventories(args):
-    cfg = read_cfg()
-    return conv_inventories(cfg, os.environ["ENV"])
+    with open(get_cfg_yaml_path()) as r:
+        cfg = yaml.load(r)
+    with open(get_servers_yaml_path(cfg)) as r:
+        servers = yaml.load(r)
+    return conv_inventories(servers, os.environ["ENV"])
 
 
 def main():
