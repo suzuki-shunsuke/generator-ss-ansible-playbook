@@ -10,8 +10,6 @@ const optionNames = [
   'envs',
   'sshcfg-path',
   'servers-yaml-path',
-  'use-standard-version',
-  'use-validate-commit-msg',
 ];
 
 const paramsHash = {};
@@ -48,15 +46,6 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    if (this.answers.useStandardVersion) {
-      this.composeWith(require.resolve(
-        'generator-ss-standard-version/generators/app'));
-    }
-    if (this.answers.useValidateCommitMsg) {
-      this.composeWith(require.resolve(
-        'generator-ss-validate-commit-msg/generators/app'));
-    }
-
     [
       '.envrc',
       'README.md',
