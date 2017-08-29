@@ -4,6 +4,7 @@ const Generator = require('yeoman-generator');
 
 const Params = require('./params');
 const convName = require('./convName');
+const prompting = require('./prompting');
 
 const optionNames = [
   'services',
@@ -29,26 +30,14 @@ module.exports = class extends Generator {
     params.setOptions(this);
   }
   prompting() {
-    const questions = params.getQuestions(this);
-    const invQuestions = {};
-    questions.forEach(question => {
-      invQuestions[question.name] = question;
-    });
-    return this.prompt(questions).then(answers => {
-      const ret = {};
-      optionNames.forEach(name => {
-        if (this.options[name] !== undefined) {
-          const filter = invQuestions[name].filter;
-          ret[convName(name)] = filter ? filter(this.options[name]) : this.options[name];
-        } else {
-          ret[convName(name)] = answers[name];
-        }
-      });
-      this.answers = ret;
-    });
+    return prompting(this, params, optionNames);
   }
 
   writing() {
+    const answers = {};
+    optionNames.forEach(key => {
+      answers[convName(key)] = this.answers[key];
+    });
     [
       'README.md',
       'bin',
@@ -77,15 +66,15 @@ module.exports = class extends Generator {
     }).forEach(key => {
       this.fs.copyTpl(
         this.templatePath(key),
-        this.destinationPath(key), this.answers);
+        this.destinationPath(key), answers);
     });
     if (this.ignoreFiles.indexOf('servers.yml') === -1) {
       this.fs.copyTpl(
         this.templatePath('servers.yml'),
-        this.destinationPath(this.answers.serversYamlPath), this.answers);
+        this.destinationPath(answers.serversYamlPath), answers);
     }
     if (this.ignoreFiles.indexOf('playbooks') === -1) {
-      this.answers.services.filter(service => {
+      answers.services.filter(service => {
         return this.ignoreFiles.indexOf(`playbooks/${service}.yml`) === -1;
       }).forEach(service => {
         this.fs.copyTpl(
@@ -94,7 +83,7 @@ module.exports = class extends Generator {
       });
     }
     if (this.ignoreFiles.indexOf('group_vars') === -1) {
-      this.answers.services.filter(service => {
+      answers.services.filter(service => {
         return this.ignoreFiles.indexOf(`group_vars/${service}.yml`) === -1;
       }).forEach(service => {
         this.fs.copyTpl(
