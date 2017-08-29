@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v2.1.0...v2.2.0) (2017-08-29)
+
+
+### Features
+
+* add `make _roles` ([d5013ff](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/commit/d5013ff))
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v2.0.1...v2.1.0) (2017-08-28)
 
