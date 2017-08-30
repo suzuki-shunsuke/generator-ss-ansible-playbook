@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.2.2"></a>
+## [2.2.2](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v2.2.1...v2.2.2) (2017-08-30)
+
+
+### Bug Fixes
+
+* fix Makefile ([c383d0d](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/commit/c383d0d))
+
+
+
 <a name="2.2.1"></a>
 ## [2.2.1](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v2.2.0...v2.2.1) (2017-08-29)
 
