@@ -11,15 +11,22 @@ This repository is based on the boilerplate created by [generator-generator](htt
 
 ## Install
 
-```bash
+```
 $ npm i -g generator-ss-ansible-playbook
 ```
 
-Then generate your new project:
+## Usage
 
-```bash
-$ yo ss-ansible-playbook
 ```
+$ yo ss-ansible-playbook [options]
+```
+
+### options
+
+* --services
+* --envs
+* --sshcfg-path
+* --servers-yaml-path
 
 ## License
 
