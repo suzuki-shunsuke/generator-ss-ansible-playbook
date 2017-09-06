@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.3.0"></a>
+# [2.3.0](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v2.2.2...v2.3.0) (2017-09-06)
+
+
+### Features
+
+* add the isSubGen option to use this generator as a sub generator ([b7a7653](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/commit/b7a7653))
+
+
+
 <a name="2.2.2"></a>
 ## [2.2.2](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v2.2.1...v2.2.2) (2017-08-30)
 
