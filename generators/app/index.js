@@ -23,13 +23,22 @@ const params = new Params(
 
 module.exports = class extends Generator {
   constructor(args, opts) {
+    const isSubGen = opts.isSubGen;
+    delete opts.isSubGen;
     const ignoreFiles = opts.ignoreFiles || [];
     delete opts.ignoreFiles;
     super(args, opts);
     this.ignoreFiles = ignoreFiles;
-    params.setOptions(this);
+    this.isSubGen = isSubGen;
+    if (!isSubGen) {
+      params.setOptions(this);
+    }
   }
   prompting() {
+    if (this.isSubGen) {
+      this.answers = this.options;
+      return;
+    }
     return prompting(this, params, optionNames);
   }
 
