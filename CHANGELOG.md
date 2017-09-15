@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.4.0"></a>
+# [2.4.0](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v2.3.1...v2.4.0) (2017-09-15)
+
+
+### Features
+
+* add ansible and test entry in Makefile ([040d51f](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/commit/040d51f))
+* add hostvars ([97667c5](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/commit/97667c5))
+
+
+
 <a name="2.3.1"></a>
 ## [2.3.1](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v2.3.0...v2.3.1) (2017-09-11)
 
