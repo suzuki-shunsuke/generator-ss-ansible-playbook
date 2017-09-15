@@ -13,7 +13,7 @@ Vagrant.configure(2) do |config|
           vb.memory = type_data["params"]["mem"]
         end 
         app.vm.network :private_network, ip: vm_data["ip"]
-	app.vm.provision "shell", path: "bin/deploy-ssh-key-to-vagrant", args: [type]
+        app.vm.provision "shell", path: "bin/deploy-ssh-key-to-vagrant", args: [type]
       end 
     }
   }
