@@ -34,13 +34,18 @@ def get_servers_yaml_path(cfg):
 
 
 def conv_inventories(data, env):
-    ret = {}
+    hostvars = {}
+    ret = {"_meta": {"hostvars": hostvars}}
     for role, role_data in data[env].items():
+        hosts = []
         ret[role] = {
-            "hosts": ["{}-{}.{}".format(role, idx, env)
-                      for idx in role_data["hosts"]],
+            "hosts": hosts,
             "vars": role_data["params"],
         }
+        for idx in role_data["hosts"]:
+            node_id = "{}-{}.{}".format(role, idx, env)
+            hostvars[node_id] = {"host_id": node_id}
+            hosts.append(node_id)
     return ret
 
 
