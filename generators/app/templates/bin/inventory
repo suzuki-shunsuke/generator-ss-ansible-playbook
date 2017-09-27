@@ -10,7 +10,10 @@ import json
 import os
 import sys
 
-import yaml
+sys.path.append(os.path.abspath(os.path.join(
+    os.path.dirname(__file__), "..", "lib")))
+
+from inventory import get_inventories  # noqa: E402
 
 
 def get_parser():
@@ -19,49 +22,11 @@ def get_parser():
     return parser
 
 
-def get_cfg_yaml_path():
-    return os.path.realpath(
-        os.path.join(
-            os.path.dirname(os.path.abspath(__file__)),
-            "..", "cfg.yml"))
-
-
-def get_servers_yaml_path(cfg):
-    return os.path.realpath(
-        os.path.join(
-            os.path.dirname(os.path.abspath(__file__)),
-            "..", cfg["servers_yml_path"]))
-
-
-def conv_inventories(data, env):
-    hostvars = {}
-    ret = {"_meta": {"hostvars": hostvars}}
-    for role, role_data in data[env].items():
-        hosts = []
-        ret[role] = {
-            "hosts": hosts,
-            "vars": role_data["params"],
-        }
-        for idx in role_data["hosts"]:
-            node_id = "{}-{}.{}".format(role, idx, env)
-            hostvars[node_id] = {"host_id": node_id}
-            hosts.append(node_id)
-    return ret
-
-
-def get_inventories(args):
-    with open(get_cfg_yaml_path()) as r:
-        cfg = yaml.load(r)
-    with open(get_servers_yaml_path(cfg)) as r:
-        servers = yaml.load(r)
-    return conv_inventories(servers, os.environ["ENV"])
-
-
 def main():
     parser = get_parser()
     args = parser.parse_args()
     if args.list:
-        json.dump(get_inventories(args), sys.stdout)
+        json.dump(get_inventories()[os.environ["ENV"]], sys.stdout)
 
 
 if __name__ == "__main__":

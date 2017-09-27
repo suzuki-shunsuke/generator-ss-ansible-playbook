@@ -6,11 +6,14 @@ data = YAML.load_file(File.expand_path('../<%- serversYamlPath %>', __FILE__))["
 
 Vagrant.configure(2) do |config|
   data.each{|type, type_data|
+    if type == "<sub_groups>"
+      next
+    end
     type_data["hosts"].each{|idx, vm_data|
       config.vm.define "#{type}-#{idx}" do |app|
         app.vm.box = "bento/centos-7.3"
         app.vm.provider "virtualbox" do |vb|
-          vb.memory = type_data["params"]["mem"]
+          vb.memory = type_data["vars"]["mem"]
         end 
         app.vm.network :private_network, ip: vm_data["ip"]
         app.vm.provision "shell", path: "bin/deploy-ssh-key-to-vagrant", args: [type]

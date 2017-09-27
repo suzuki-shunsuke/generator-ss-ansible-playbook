@@ -1,6 +1,6 @@
 vagrant:<% services.forEach(function(service, i) { %>
   <%- service %>:
-    params:
+    vars:
       user: vagrant
       mem: 1024
     hosts:
@@ -9,7 +9,7 @@ vagrant:<% services.forEach(function(service, i) { %>
 <% envs.filter(function(env) { return env != 'vagrant';}).forEach(function(env) { -%>
 # <%- env %>:<% services.forEach(function(service) { %>
 #   <%- service %>:
-#     params:
+#     vars:
 #       user:
 #     hosts:
 #       1:
