@@ -7,6 +7,7 @@ const convName = require('./convName');
 const prompting = require('./prompting');
 
 const optionNames = [
+  'vagrant-box',
   'services',
   'envs',
   'sshcfg-path',
@@ -52,10 +53,9 @@ module.exports = class extends Generator {
       'bin',
       'group_vars/all.yml',
       'lib',
-      'requirements.dev.in',
       'requirements.in',
       'roles.yml',
-      'ssh-keys/.keep'].filter(key => {
+      'script'].filter(key => {
         return this.ignoreFiles.indexOf(key) === -1;
       }).forEach(key => {
         this.fs.copy(

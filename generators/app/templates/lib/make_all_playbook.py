@@ -16,7 +16,7 @@ class AllPlaybook(object):
 
     def conv_data(self, data):
         return [
-            {"include": "{}.yml".format(group_name)}
+            {"import_playbook": "{}.yml".format(group_name)}
             for env, env_data in data.items() for group_name in env_data["groups"]]
 
     def run(self):
