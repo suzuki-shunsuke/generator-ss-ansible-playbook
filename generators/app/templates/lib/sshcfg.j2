@@ -9,8 +9,11 @@
 Host {{group_name}}-{{idx}}.{{env}}
   HostName {{host_data.ip}}
   User {{ group_data.vars.user }}
-  IdentityFile ssh-keys/{{group_name}}.{{env}}
-  UserKnownHostsFile ssh-keys/known_hosts
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
+      	{% if env == "vagrant" %}
+  IdentityFile .vagrant/id_rsa
+        {% endif %}
       {% endif %}
     {% endfor %}
   {% endfor %}

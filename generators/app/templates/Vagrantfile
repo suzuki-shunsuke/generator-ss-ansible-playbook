@@ -11,7 +11,7 @@ Vagrant.configure(2) do |config|
     end
     type_data["hosts"].each{|idx, vm_data|
       config.vm.define "#{type}-#{idx}" do |app|
-        app.vm.box = "bento/centos-7.3"
+        app.vm.box = "<%- vagrantBox %>"
         app.vm.provider "virtualbox" do |vb|
           vb.memory = type_data["vars"]["mem"]
         end 
