@@ -45,16 +45,27 @@ def normalize_servers(data):
                 continue
             if group_data is None:
                 ret[env_name]["groups"][group_name] = {
-                    "hosts": {}, "vars": {}, "children": []}
+                    "hosts": {}, "vars": {"env": env_name}, "children": []}
                 continue
             hosts = {}
             for idx, host_var in get_val(group_data, "hosts", {}).items():
                 hosts[idx] = {} if host_var is None else host_var
+            group_vars = get_val(group_data, "vars", {})
             ret[env_name]["groups"][group_name] = {
-                "hosts": hosts,
-                "vars": get_val(group_data, "vars", {}),
+                "hosts": hosts, "vars": group_vars,
                 "children": get_val(group_data, "children", []),
             }
+            group_vars["env"] = env_name
+            env_vars = get_val(group_data, "env_vars", {})
+            if isinstance(env_vars, list):
+                env_vars = dict((k, k.upper()) for k in env_vars)
+            for k, v in env_vars.items():
+                env_var = os.environ.get(v)
+                if env_var is None:
+                    group_vars.setdefault(k, None)
+                else:
+                    # env_vars overwrites vars
+                    group_vars[k] = env_var
     return ret
 
 

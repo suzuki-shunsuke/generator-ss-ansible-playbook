@@ -19,8 +19,6 @@ _roles/*
 
 # ssh
 sshcfg
-ssh-keys/*
-!ssh-keys/.keep
 
 # Node.js
 node_modules
