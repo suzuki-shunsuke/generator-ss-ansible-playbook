@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.6.0"></a>
+# [2.6.0](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v2.5.0...v2.6.0) (2017-12-08)
+
+
+### Features
+
+* add vagrant-box parameter ([5673e0b](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/commit/5673e0b))
+
+
+
 <a name="2.5.0"></a>
 # [2.5.0](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v2.4.0...v2.5.0) (2017-09-27)
 
