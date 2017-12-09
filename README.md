@@ -25,6 +25,7 @@ $ yo ss-ansible-playbook [options]
 
 ### options
 
+* --vagrant-box
 * --services
 * --envs
 * --sshcfg-path

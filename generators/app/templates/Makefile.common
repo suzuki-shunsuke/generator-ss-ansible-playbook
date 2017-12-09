@@ -1,0 +1,21 @@
+all: ansible
+
+ROLE = all
+SSHCFG=<%- sshcfgPath %>
+SERVERS_YAML=<%- serversYamlPath %>
+
+_roles: roles.yml $(SSHCFG)
+	ansible-galaxy install -r roles.yml
+$(SSHCFG): $(SERVERS_YAML) lib/sshcfg.j2 script/make-sshcfg.py lib/make_sshcfg.py
+	python script/make-sshcfg.py
+
+playbooks/all.yml: $(SERVERS_YAML) script/make-all-playbook.py lib/make_all_playbook.py
+	ENV=$(ENV) python script/make-all-playbook.py
+
+ansible: _roles $(SSHCFG) playbooks/all.yml
+	ENV=$(ENV) ansible-playbook -i bin/inventory \
+	    playbooks/$(ROLE).yml
+
+test: sshcfg playbooks/all.yml
+	ENV=$(ENV) ansible-playbook -i bin/inventory \
+		--syntax-check playbooks/$(ROLE).yml

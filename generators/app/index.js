@@ -70,7 +70,7 @@ module.exports = class extends Generator {
       this.fs.copy(
         this.templatePath('envrc'), this.destinationPath('.envrc'));
     }
-    ['Vagrantfile', 'Makefile', 'ansible.cfg', 'cfg.yml'].filter(key => {
+    ['Vagrantfile', 'Makefile', 'Makefile.common', 'Makefile.prod', 'ansible.cfg', 'cfg.yml'].filter(key => {
       return this.ignoreFiles.indexOf(key) === -1;
     }).forEach(key => {
       this.fs.copyTpl(
