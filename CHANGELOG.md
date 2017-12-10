@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.7.2"></a>
+## [2.7.2](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v2.7.1...v2.7.2) (2017-12-10)
+
+
+### Bug Fixes
+
+* fix env_vars ([6995019](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/commit/6995019))
+
+
+
 <a name="2.7.1"></a>
 ## [2.7.1](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v2.7.0...v2.7.1) (2017-12-09)
 
