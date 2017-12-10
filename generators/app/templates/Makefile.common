@@ -16,6 +16,6 @@ ansible: _roles $(SSHCFG) playbooks/all.yml
 	ENV=$(ENV) ansible-playbook -i bin/inventory \
 	    playbooks/$(ROLE).yml
 
-test: sshcfg playbooks/all.yml
+test: _roles $(SSHCFG) playbooks/all.yml
 	ENV=$(ENV) ansible-playbook -i bin/inventory \
 		--syntax-check playbooks/$(ROLE).yml
