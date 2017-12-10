@@ -1,6 +1,6 @@
 {
   "name": "generator-ss-ansible-playbook",
-  "version": "2.7.2",
+  "version": "2.7.3",
   "description": "yeoman generator for ansible playbook",
   "homepage": "https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook",
   "author": {
