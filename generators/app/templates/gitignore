@@ -17,8 +17,5 @@ _roles/*
 # Vagrant
 .vagrant
 
-# ssh
-sshcfg
-
 # Node.js
 node_modules

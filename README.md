@@ -26,10 +26,8 @@ $ yo ss-ansible-playbook [options]
 ### options
 
 * --vagrant-box
-* --services
+* --groups
 * --envs
-* --sshcfg-path
-* --servers-yaml-path
 
 ## License
 

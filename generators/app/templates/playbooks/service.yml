@@ -1,7 +1,0 @@
-# playbooks/<%- service %>.yml
----
-- hosts: <%- service %>
-  vars_files:
-    - ../group_vars/all.yml
-    - ../group_vars/<%- service %>.yml
-  roles: []

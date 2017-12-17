@@ -1,0 +1,7 @@
+# playbooks/<%- group %>.yml
+---
+- hosts: <%- group %>
+  vars_files:
+    - ../group_vars/all.yml
+    - ../group_vars/<%- group %>.yml
+  roles: []

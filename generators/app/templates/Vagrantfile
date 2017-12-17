@@ -2,21 +2,18 @@
 # vi: set ft=ruby :
 
 require 'yaml'
-data = YAML.load_file(File.expand_path('../<%- serversYamlPath %>', __FILE__))["vagrant"]
+data = YAML.load_file(File.expand_path('../vagrant.yml', __FILE__))["all"]["children"]
 
 Vagrant.configure(2) do |config|
-  data.each{|type, type_data|
-    if type == "<sub_groups>"
-      next
-    end
-    type_data["hosts"].each{|idx, vm_data|
-      config.vm.define "#{type}-#{idx}" do |app|
+  data.each{|group_name, group|
+    group["hosts"].each{|hostname, host|
+      config.vm.define hostname do |app|
         app.vm.box = "<%- vagrantBox %>"
         app.vm.provider "virtualbox" do |vb|
-          vb.memory = type_data["vars"]["mem"]
+          vb.memory = group["vagrant_vars"]["mem"]
         end 
-        app.vm.network :private_network, ip: vm_data["ip"]
-        app.vm.provision "shell", path: "bin/deploy-ssh-key-to-vagrant", args: [type]
+        app.vm.network :private_network, ip: host["ansible_host"]
+        app.vm.provision "shell", path: "script/deploy-ssh-key-to-vagrant.sh", args: [group_name]
       end 
     }
   }

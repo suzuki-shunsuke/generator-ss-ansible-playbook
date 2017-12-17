@@ -1,0 +1,14 @@
+# inventory file for vagrant
+all:
+  vars:
+    ansible_ssh_private_key_file: .vagrant/id_rsa
+    ansible_user: vagrant
+  children:<% groups.forEach(function(group, i) { %>
+    <%- group %>:
+      hosts:
+        <%- group %>-1:
+          ansible_host: 192.168.60.<%- i + 1 %>0
+      vars: {}
+      env_vars: []
+      vagrant_vars:
+        mem: 1024<% }); %>

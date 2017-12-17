@@ -5,20 +5,6 @@ import os
 import yaml
 
 
-def get_cfg_yaml_path():
-    return os.path.realpath(
-        os.path.join(
-            os.path.dirname(os.path.abspath(__file__)),
-            "..", "cfg.yml"))
-
-
-def get_servers_yaml_path(cfg):
-    return os.path.realpath(
-        os.path.join(
-            os.path.dirname(os.path.abspath(__file__)),
-            "..", cfg["servers_yml_path"]))
-
-
 def get_val(dct, key, default_value):
     if key in dct and dct[key] is not None:
         return dct[key]
