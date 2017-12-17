@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v2.7.4...v3.0.0) (2017-12-17)
+
+
+### Features
+
+* remove servers.yml ([323a037](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/commit/323a037))
+
+
+### BREAKING CHANGES
+
+* change some options
+
+* remove --sshcfg-path and --servers-yaml-path
+* rename --services to --groups
+* remove servers.yml and sshcfg
+
+
+
 <a name="2.7.4"></a>
 ## [2.7.4](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v2.7.3...v2.7.4) (2017-12-10)
 
