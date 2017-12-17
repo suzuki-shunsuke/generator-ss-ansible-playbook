@@ -1,0 +1,12 @@
+# inventory file for <%- env %>
+all:
+  vars:
+    # ansible_ssh_private_key_file:
+    ansible_user:
+  children:<% groups.forEach(function(group, i) { %>
+    <%- group %>:
+      hosts:
+        <%- group %>-1:
+          ansible_host:
+      vars: {}
+      env_vars: []<% }); %>

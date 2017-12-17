@@ -1,15 +1,15 @@
-// params/services.js
+// params/groups.js
 
 const split = require('../split');
 const defaultWhen = require('../defaultWhen');
 
-const name = 'services';
+const name = 'groups';
 
 module.exports = {
   name,
   option: {
     type: String,
-    desc: 'service names(space separeted)',
+    desc: 'group names(space separeted)',
   },
   question(gen) {
     const question = {

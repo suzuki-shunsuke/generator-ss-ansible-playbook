@@ -8,10 +8,8 @@ const prompting = require('./prompting');
 
 const optionNames = [
   'vagrant-box',
-  'services',
+  'groups',
   'envs',
-  'sshcfg-path',
-  'servers-yaml-path',
 ];
 
 const paramsHash = {};
@@ -50,8 +48,8 @@ module.exports = class extends Generator {
     });
     [
       'README.md',
-      'bin',
       'group_vars/all.yml',
+      'inventories',
       'lib',
       'requirements.in',
       'roles.yml',
@@ -70,40 +68,42 @@ module.exports = class extends Generator {
       this.fs.copy(
         this.templatePath('envrc'), this.destinationPath('.envrc'));
     }
-    ['Vagrantfile', 'Makefile', 'Makefile.common', 'Makefile.prod', 'ansible.cfg', 'cfg.yml'].filter(key => {
+    ['Vagrantfile', 'Makefile', 'Makefile.common', 'Makefile.prod', 'ansible.cfg', 'vagrant.yml'].filter(key => {
       return this.ignoreFiles.indexOf(key) === -1;
     }).forEach(key => {
       this.fs.copyTpl(
         this.templatePath(key),
-        this.destinationPath(key), answers);
+        this.destinationPath(key), {
+          groups: answers.groups,
+          vagrantBox: answers.vagrantBox});
     });
-    if (this.ignoreFiles.indexOf('servers.yml') === -1) {
+    answers.envs.filter(env => env !== 'vagrant').forEach(env => {
       this.fs.copyTpl(
-        this.templatePath('servers.yml'),
-        this.destinationPath(answers.serversYamlPath), answers);
-    }
+        this.templatePath('inventory.yml'),
+        this.destinationPath(`${env}.yml`), {groups: answers.groups, env: env});
+    });
     if (this.ignoreFiles.indexOf('playbooks') === -1) {
-      answers.services.filter(service => {
-        return this.ignoreFiles.indexOf(`playbooks/${service}.yml`) === -1;
-      }).forEach(service => {
+      answers.groups.filter(group => {
+        return this.ignoreFiles.indexOf(`playbooks/${group}.yml`) === -1;
+      }).forEach(group => {
         this.fs.copyTpl(
-          this.templatePath('playbooks/service.yml'),
-          this.destinationPath(`playbooks/${service}.yml`), {service: service});
+          this.templatePath('playbooks/group.yml'),
+          this.destinationPath(`playbooks/${group}.yml`), {group: group});
       });
     }
     if (this.ignoreFiles.indexOf('group_vars') === -1) {
-      answers.services.filter(service => {
-        return this.ignoreFiles.indexOf(`group_vars/${service}.yml`) === -1;
-      }).forEach(service => {
+      answers.groups.filter(group => {
+        return this.ignoreFiles.indexOf(`group_vars/${group}.yml`) === -1;
+      }).forEach(group => {
         this.fs.copyTpl(
-          this.templatePath('group_vars/service.yml'),
-          this.destinationPath(`group_vars/${service}.yml`), {service: service});
+          this.templatePath('group_vars/group.yml'),
+          this.destinationPath(`group_vars/${group}.yml`), {group: group});
       });
     }
   }
 
   install() {
+    this.spawnCommand('chmod', ['-R', 'a+x', 'inventories']);
     this.spawnCommand('direnv', ['allow']);
-    this.spawnCommand('chmod', ['-R', 'a+x', 'bin']);
   }
 };
