@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.1"></a>
+## [3.0.1](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v3.0.0...v3.0.1) (2017-12-17)
+
+
+### Bug Fixes
+
+* fix env inventory source ([60b26af](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/commit/60b26af))
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v2.7.4...v3.0.0) (2017-12-17)
 
