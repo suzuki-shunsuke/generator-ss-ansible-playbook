@@ -35,24 +35,24 @@ import yaml
 def main():
     parser = get_parser()
     args = parser.parse_args()
-    if "ENV" in os.environ:
-        sys.stdout("[ERROR] The environment variable 'ENV' is required.\n")
+    if "ENV" not in os.environ:
+        sys.stdout.write("[ERROR] The environment variable 'ENV' is required.\n")
         sys.exit(1)
-    ENV = os.environ["ENV"]
+    env = os.environ["ENV"]
     if args.list:
-        do_list()
+        do_list(env)
     if args.host:
-        do_host(args.host)
+        do_host(env, args.host)
 
 
-def do_host(hostname):
+def do_host(env, hostname):
     ret = {}
     json.dump(ret, sys.stdout)
 
 
-def do_list():
+def do_list(env):
     ret = {}
-    with open("{}.yml".format(ENV)) as r:
+    with open("{}.yml".format(env)) as r:
         groups = [("all", yaml.load(r)["all"])]
     while groups:
         group_name, group = groups.pop()
