@@ -1,3 +1,4 @@
+---
 # inventory file for vagrant
 all:
   vars:
