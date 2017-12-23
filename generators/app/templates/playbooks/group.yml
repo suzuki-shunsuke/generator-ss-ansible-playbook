@@ -1,5 +1,5 @@
-# playbooks/<%- group %>.yml
 ---
+# playbooks/<%- group %>.yml
 - hosts: <%- group %>
   vars_files:
     - ../group_vars/all.yml

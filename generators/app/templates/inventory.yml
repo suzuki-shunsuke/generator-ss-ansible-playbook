@@ -1,3 +1,4 @@
+---
 # inventory file for <%- env %>
 all:
   vars:
