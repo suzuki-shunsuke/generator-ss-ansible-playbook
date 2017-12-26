@@ -1,5 +1,3 @@
-// Params/envs.js
-
 const split = require('../split');
 const defaultWhen = require('../defaultWhen');
 

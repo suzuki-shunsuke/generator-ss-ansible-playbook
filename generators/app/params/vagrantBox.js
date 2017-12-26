@@ -1,5 +1,3 @@
-// Params/vagrantBox.js
-
 const defaultWhen = require('../defaultWhen');
 
 const name = 'vagrant-box';
