@@ -1,6 +1,6 @@
-// split.js
+// Split.js
 
-module.exports = function split(input) {
+module.exports = input => {
   const items = [];
   input.split(' ').forEach(item => {
     item = item.trim();

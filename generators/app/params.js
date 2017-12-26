@@ -1,5 +1,3 @@
-const convName = require('./convName');
-
 module.exports = class Params {
   constructor(params) {
     this.params = params;
@@ -16,7 +14,7 @@ module.exports = class Params {
   getQuestions(gen) {
     return this.params.filter(param => param.question).map(param => Object.assign({
       name: param.name,
-      message: param.option ? param.option.desc : '',
+      message: param.option ? param.option.desc : ''
     }, param.question(gen)));
   }
-}
+};

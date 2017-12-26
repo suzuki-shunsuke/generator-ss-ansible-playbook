@@ -9,7 +9,7 @@ const prompting = require('./prompting');
 const optionNames = [
   'vagrant-box',
   'groups',
-  'envs',
+  'envs'
 ];
 
 const paramsHash = {};
@@ -54,11 +54,11 @@ module.exports = class extends Generator {
       'requirements.in',
       'roles.yml',
       'script'].filter(key => {
-        return this.ignoreFiles.indexOf(key) === -1;
-      }).forEach(key => {
-        this.fs.copy(
-          this.templatePath(key),
-          this.destinationPath(key));
+      return this.ignoreFiles.indexOf(key) === -1;
+    }).forEach(key => {
+      this.fs.copy(
+        this.templatePath(key),
+        this.destinationPath(key));
     });
     if (this.ignoreFiles.indexOf('.gitignore') === -1) {
       this.fs.copy(
