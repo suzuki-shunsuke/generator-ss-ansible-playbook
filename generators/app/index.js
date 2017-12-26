@@ -1,6 +1,7 @@
 'use strict';
 
 const Generator = require('yeoman-generator');
+const { Conflicter, Adapter } = require('yeoman-merge-ui');
 
 const Params = require('./params');
 const convName = require('./convName');
@@ -27,6 +28,10 @@ module.exports = class extends Generator {
     const ignoreFiles = opts.ignoreFiles || [];
     delete opts.ignoreFiles;
     super(args, opts);
+
+    this.env.adapter = new Adapter();
+    this.conflicter = new Conflicter(this.env.adapter, this.options.force);
+
     this.ignoreFiles = ignoreFiles;
     this.isSubGen = isSubGen;
     if (!isSubGen) {
