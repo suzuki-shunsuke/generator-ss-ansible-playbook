@@ -1,6 +1,7 @@
 'use strict';
 
 const Generator = require('yeoman-generator');
+const { Conflicter, Adapter } = require('yeoman-merge-ui');
 
 const Params = require('./params');
 const convName = require('./convName');
@@ -9,7 +10,7 @@ const prompting = require('./prompting');
 const optionNames = [
   'vagrant-box',
   'groups',
-  'envs',
+  'envs'
 ];
 
 const paramsHash = {};
@@ -27,6 +28,10 @@ module.exports = class extends Generator {
     const ignoreFiles = opts.ignoreFiles || [];
     delete opts.ignoreFiles;
     super(args, opts);
+
+    this.env.adapter = new Adapter();
+    this.conflicter = new Conflicter(this.env.adapter, this.options.force);
+
     this.ignoreFiles = ignoreFiles;
     this.isSubGen = isSubGen;
     if (!isSubGen) {
@@ -54,11 +59,11 @@ module.exports = class extends Generator {
       'requirements.in',
       'roles.yml',
       'script'].filter(key => {
-        return this.ignoreFiles.indexOf(key) === -1;
-      }).forEach(key => {
-        this.fs.copy(
-          this.templatePath(key),
-          this.destinationPath(key));
+      return this.ignoreFiles.indexOf(key) === -1;
+    }).forEach(key => {
+      this.fs.copy(
+        this.templatePath(key),
+        this.destinationPath(key));
     });
     if (this.ignoreFiles.indexOf('.gitignore') === -1) {
       this.fs.copy(

@@ -7,11 +7,11 @@ module.exports = (gen, params, optionNames) => {
   return gen.prompt(questions).then(answers => {
     const ret = {};
     optionNames.forEach(name => {
-      if (gen.options[name] !== undefined) {
+      if (gen.options[name] === undefined) {
+        ret[name] = answers[name];
+      } else {
         const filter = invQuestions[name].filter;
         ret[name] = filter ? filter(gen.options[name]) : gen.options[name];
-      } else {
-        ret[name] = answers[name];
       }
     });
     gen.answers = ret;
