@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v3.0.2...v3.1.0) (2017-12-26)
+
+
+### Bug Fixes
+
+* remove comments ([1481b04](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/commit/1481b04))
+
+
+### Features
+
+* use yeoman-merge-ui ([f657ae6](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/commit/f657ae6))
+* use yeoman-merge-ui ([273777c](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/commit/273777c))
+
+
+
 <a name="3.0.2"></a>
 ## [3.0.2](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v3.0.1...v3.0.2) (2017-12-23)
 
