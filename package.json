@@ -42,6 +42,7 @@
     "pretest": "eslint . --fix",
     "test": "jest",
     "release": "standard-version",
+    "commitlint-travis": "commitlint-travis",
     "commitmsg": "commitlint -e $GIT_PARAMS"
   },
   "eslintConfig": {
