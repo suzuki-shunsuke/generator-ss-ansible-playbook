@@ -8,10 +8,10 @@ _roles: roles.yml
 playbooks/all.yml: script/make-all-playbook.py lib/make_all_playbook.py
 	ENV=$(ENV) python script/make-all-playbook.py
 
-ansible: _roles $(SSHCFG) playbooks/all.yml
+ansible: _roles playbooks/all.yml
 	ENV=$(ENV) ansible-playbook -i $(ENV).yml -i inventories \
 		playbooks/$(ROLE).yml
 
-test: _roles $(SSHCFG) playbooks/all.yml
+test: _roles playbooks/all.yml
 	ENV=$(ENV) ansible-playbook -i $(ENV).yml -i inventories \
 		--syntax-check playbooks/$(ROLE).yml
