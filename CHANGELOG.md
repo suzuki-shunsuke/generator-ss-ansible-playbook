@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.1.1"></a>
+## [3.1.1](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v3.1.0...v3.1.1) (2018-05-13)
+
+
+### Bug Fixes
+
+* remove SSH_CFG and vars_files ([8296eec](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/commit/8296eec))
+* set node version and add commitlint.config.js ([5da6f99](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/commit/5da6f99))
+
+
+
 <a name="3.1.0"></a>
 # [3.1.0](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v3.0.2...v3.1.0) (2017-12-26)
 
