@@ -5,13 +5,13 @@ ROLE = all
 _roles: roles.yml
 	ansible-galaxy install -r roles.yml
 
-playbooks/all.yml: script/make-all-playbook.py lib/make_all_playbook.py
+all.yml: script/make-all-playbook.py lib/make_all_playbook.py
 	ENV=$(ENV) python script/make-all-playbook.py
 
-ansible: _roles playbooks/all.yml
+ansible: _roles all.yml
 	ENV=$(ENV) ansible-playbook -i $(ENV).yml -i inventories \
-		playbooks/$(ROLE).yml
+		$(ROLE).yml --diff
 
-test: _roles playbooks/all.yml
+test: _roles all.yml
 	ENV=$(ENV) ansible-playbook -i $(ENV).yml -i inventories \
-		--syntax-check playbooks/$(ROLE).yml
+		--syntax-check $(ROLE).yml

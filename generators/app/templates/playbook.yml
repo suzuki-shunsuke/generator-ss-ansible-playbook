@@ -1,4 +1,3 @@
 ---
-# playbooks/<%- group %>.yml
 - hosts: <%- group %>
   roles: []

@@ -11,7 +11,7 @@ module.exports = {
   question(gen) {
     const question = {
       type: 'input',
-      default: 'bento/centos-7.4'
+      default: 'bento/centos-7.5'
     };
     question.when = defaultWhen(gen, name);
     return question;

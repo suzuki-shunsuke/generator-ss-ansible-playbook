@@ -89,11 +89,11 @@ module.exports = class extends Generator {
     });
     if (this.ignoreFiles.indexOf('playbooks') === -1) {
       answers.groups.filter(group => {
-        return this.ignoreFiles.indexOf(`playbooks/${group}.yml`) === -1;
+        return this.ignoreFiles.indexOf(`${group}.yml`) === -1;
       }).forEach(group => {
         this.fs.copyTpl(
-          this.templatePath('playbooks/group.yml'),
-          this.destinationPath(`playbooks/${group}.yml`), {group: group});
+          this.templatePath('playbook.yml'),
+          this.destinationPath(`${group}.yml`), {group: group});
       });
     }
     if (this.ignoreFiles.indexOf('group_vars') === -1) {
