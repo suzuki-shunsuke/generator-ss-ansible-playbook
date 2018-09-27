@@ -54,7 +54,7 @@ module.exports = class extends Generator {
     [
       'README.md',
       'group_vars/all.yml',
-      'inventories',
+      'dynamic_inventories',
       'lib',
       'requirements.in',
       'roles.yml',
@@ -73,7 +73,7 @@ module.exports = class extends Generator {
       this.fs.copy(
         this.templatePath('envrc'), this.destinationPath('.envrc'));
     }
-    ['Vagrantfile', 'Makefile', 'Makefile.common', 'Makefile.prod', 'ansible.cfg', 'vagrant.yml'].filter(key => {
+    ['Vagrantfile', 'Makefile', 'Makefile.common', 'Makefile.prod', 'ansible.cfg', 'inventories'].filter(key => {
       return this.ignoreFiles.indexOf(key) === -1;
     }).forEach(key => {
       this.fs.copyTpl(
@@ -85,7 +85,7 @@ module.exports = class extends Generator {
     answers.envs.filter(env => env !== 'vagrant').forEach(env => {
       this.fs.copyTpl(
         this.templatePath('inventory.yml'),
-        this.destinationPath(`${env}.yml`), {groups: answers.groups, env: env});
+        this.destinationPath(`inventories/${env}.yml`), {groups: answers.groups, env: env});
     });
     if (this.ignoreFiles.indexOf('playbooks') === -1) {
       answers.groups.filter(group => {
@@ -108,7 +108,7 @@ module.exports = class extends Generator {
   }
 
   install() {
-    this.spawnCommand('chmod', ['-R', 'a+x', 'inventories']);
+    this.spawnCommand('chmod', ['-R', 'a+x', 'dynamic_inventories']);
     this.spawnCommand('direnv', ['allow']);
   }
 };

@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 require 'yaml'
-data = YAML.load_file(File.expand_path('../vagrant.yml', __FILE__))["all"]["children"]
+data = YAML.load_file(File.expand_path('../inventories/vagrant.yml', __FILE__))["all"]["children"]
 
 Vagrant.configure(2) do |config|
   data.each{|group_name, group|

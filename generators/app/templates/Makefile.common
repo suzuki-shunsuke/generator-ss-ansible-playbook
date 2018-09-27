@@ -9,9 +9,9 @@ all.yml: script/make-all-playbook.py lib/make_all_playbook.py
 	ENV=$(ENV) python script/make-all-playbook.py
 
 ansible: _roles all.yml
-	ENV=$(ENV) ansible-playbook -i $(ENV).yml -i inventories \
+	ENV=$(ENV) ansible-playbook -i inventories/$(ENV).yml -i dynamic_inventories \
 		$(ROLE).yml --diff
 
 test: _roles all.yml
-	ENV=$(ENV) ansible-playbook -i $(ENV).yml -i inventories \
+	ENV=$(ENV) ansible-playbook -i inventories/$(ENV).yml -i dynamic_inventories \
 		--syntax-check $(ROLE).yml

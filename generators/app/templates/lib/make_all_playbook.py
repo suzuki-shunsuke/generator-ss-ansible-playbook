@@ -14,7 +14,7 @@ class AllPlaybook(object):
 
     def get_src_path(self, env):
         return os.path.abspath(os.path.join(
-            os.path.dirname(__file__), "..", "{}.yml".format(env)))
+            os.path.dirname(__file__), "..", "inventories", "{}.yml".format(env)))
 
     def conv_data(self, groups):
         return [

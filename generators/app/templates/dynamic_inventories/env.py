@@ -52,7 +52,7 @@ def do_host(env, hostname):
 
 def do_list(env):
     ret = {}
-    with open("{}.yml".format(env)) as r:
+    with open("inventories/{}.yml".format(env)) as r:
         groups = [("all", yaml.load(r)["all"])]
     while groups:
         group_name, group = groups.pop()
