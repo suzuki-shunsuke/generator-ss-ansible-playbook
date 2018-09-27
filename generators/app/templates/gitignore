@@ -3,7 +3,7 @@
 
 # Ansible
 *.retry
-playbooks/all.yml
+all.yml
 _roles/*
 !_roles/.keep
 
