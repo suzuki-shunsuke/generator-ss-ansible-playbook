@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v3.1.2...v4.0.0) (2018-10-11)
+
+
+### Bug Fixes
+
+* fix .gitignore ([8b9f95a](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/commit/8b9f95a))
+
+
+### Code Refactoring
+
+* change inventories file location ([bb9a0bd](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/commit/bb9a0bd))
+
+
+### Features
+
+* change playbook location ([3f923ac](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/commit/3f923ac))
+
+
+### BREAKING CHANGES
+
+* change inventories file location
+* change playbook location
+
+playbooks/<group>.yml -> <group>.yml
+
+
+
 <a name="3.1.2"></a>
 ## [3.1.2](https://github.com/suzuki-shunsuke/generator-ss-ansible-playbook/compare/v3.1.1...v3.1.2) (2018-05-13)
 
