@@ -1,6 +1,6 @@
 include Makefile.common
 
-ENV=vagrant
+env=vagrant
 
 pylib: requirements.txt
 	pip-sync requirements.txt
